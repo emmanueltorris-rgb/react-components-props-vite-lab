@@ -1,94 +1,118 @@
-# Putting it All Together: Components and Props
+# React Components & Props Lab
 
-## Learning Goals
+A small React blog site built with Vite to practice composing components, writing JSX, and passing data through props.
 
-- Create components that return JSX
-- Use props to make components dynamic
-- Transform lists of data into lists of components
+## Table of Contents
 
-## Overview
+- [About](#about)
+- [Features](#features)
+- [Technologies](#technologies)
+- [Getting Started](#getting-started)
+- [Available Scripts](#available-scripts)
+- [Project Structure](#project-structure)
+- [Component Overview](#component-overview)
+- [Data Flow](#data-flow)
+- [License](#license)
 
-Now that you've learned how to work with components in React, it's time to build
-something and put those skills to use! Your goal for this lab is to make a
-_static site_ in React to practice building components, writing JSX, and passing
-down data as props.
+## About
 
-We'll be creating a personal blog site, similar to
-[Dan Abramov's Overreacted](https://overreacted.io/):
+This project is a static blog landing page that demonstrates how to structure a React application using reusable components. Blog content is defined in `src/data/blog.js`, and the top-level `App` component passes that content into child components via props.
 
-![demo](https://curriculum-content.s3.amazonaws.com/phase-2/react-hooks-component-props-mini-project/demo.png)
+## Features
 
-There is some starter code available in `src/components/App.js`. There is also
-some data in `data/blog.js` that is being imported into `App` so you can pass it
-down to the components that need it.
+- Header section with the blog title
+- About section with a logo image and blog description
+- Article list rendered from an array of post objects
+- Component-based architecture using React props
+- Vite-powered development and build setup
 
-## Deliverables
+## Technologies
 
-Have a look at the components below and draw out a component hierarchy so you
-can determine how to pass data down as props.
+- React
+- Vite
+- JSX
+- CSS
+- Vitest + Testing Library
 
-### Header
+## Getting Started
 
-Make a `Header` component as a child of `App`. It should return:
+1. Clone the repository:
 
-- a `<header>` element with the following elements inside:
-  - an `<h1>` with the name of the blog, passed as a prop called `name`
+   ```bash
+   git clone https://github.com/your-username/react-components-props-vite-lab.git
+   cd react-components-props-vite-lab
+   ```
 
-### About
+2. Install dependencies:
 
-Make an `About` component as a child of `App`. It should return:
+   ```bash
+   npm install
+   ```
 
-- an `<aside>` element with the following elements inside:
-  - an `<img>` element, with the `src` set to an image passed as a prop called
-    `image`
-  - the `<img>` element should use this placeholder image as a _default value_
-    for the prop if no prop is passed in: "https://via.placeholder.com/215"
-  - the image should also be accessible! Give it an `alt` attribute of "blog
-    logo"
-  - a `<p>` element, with the text for the blog passed in as a prop called
-    `about`
+3. Start the development server:
 
-### ArticleList
+   ```bash
+   npm run dev
+   ```
 
-Make an `ArticleList` component as a child of `App`. It should return:
+4. Open the app in your browser at `http://localhost:5173`.
 
-- a `<main>` element with the following components inside:
-  - an array of `Article` components (one component for each of the `posts`
-    passed down as props to `ArticleList`)
-  - make sure to assign a unique `key` attribute to each `Article`
+## Available Scripts
 
-### Article
+- `npm run dev` - start the Vite development server
+- `npm run build` - build the production bundle
+- `npm run preview` - preview the production build locally
+- `npm run lint` - run ESLint across the project
+- `npm run test` - run the Vitest test suite
 
-Make an `Article` component as a child of `ArticleList`. It should return:
+## Project Structure
 
-- an `<article>` element, with the following elements inside:
-  - an `<h3>` element displaying the title of the article, passed as a prop
-    called `title`
-  - a `<small>` element displaying the date of the article, passed as a prop
-    called `date`
-    - a _default value_ of "January 1, 1970" should be used if no date is passed
-      as a prop
-  - a `<p>` element displaying the preview of the article, passed as a prop
-    called `preview`
+```
+react-components-props-vite-lab/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── About.jsx
+│   │   ├── Article.jsx
+│   │   ├── ArticleList.jsx
+│   │   └── Header.jsx
+│   ├── data/
+│   │   └── blog.js
+│   ├── __tests__/
+│   ├── App.css
+│   ├── App.jsx
+│   └── main.jsx
+├── index.html
+├── package.json
+├── vite.config.js
+└── README.md
+```
 
-### Bonus Feature: 'Minutes to Read'
+## Component Overview
 
-You'll notice in the original [Overreacted](https://overreacted.io/) site,
-there's a 'minutes to read' indicator next to each article.
+- `App.jsx` — root component that imports blog data and passes props to child components.
+- `Header.jsx` — renders the blog title.
+- `About.jsx` — displays the blog logo image and description.
+- `ArticleList.jsx` — maps over the post list and renders an `Article` component for each entry.
+- `Article.jsx` — shows a single article preview including title, date, and summary.
 
-If the article takes less than 30 minutes to read:
+## Data Flow
 
-- For every 5 minutes (rounded up to the nearest 5), display a coffee cup emoji.
-  For example, if the article takes 3 minutes to read, you should display "☕️ 3
-  min read". If the article takes 7 minute, you should display "☕️☕️ 7 min
-  read".
+Blog content is stored in `src/data/blog.js` as a JavaScript object:
 
-If the article takes 30 minutes or longer to read:
+- `name` — blog title
+- `image` — logo image path
+- `about` — blog description text
+- `posts` — array of article objects
 
-- For every 10 minutes (rounded up to the nearest 10), display a bento box
-  emoji. For example, if the article takes 35 minutes to read, you should
-  display "🍱🍱🍱🍱 35 min read". If the article takes 61 minutes to read, you
-  should display "🍱🍱🍱🍱🍱🍱🍱 61 min read".
+The `App` component imports this data and passes it down as props:
 
-There aren't tests for this feature, so you'll have to rely on running the code
-in the browser to see if your implementation works!
+- `Header` receives `name`
+- `About` receives `image` and `about`
+- `ArticleList` receives `posts`
+
+Each `Article` component receives `title`, `date`, and `preview` props from `ArticleList`.
+
+## License
+
+This project is released under the MIT License.
