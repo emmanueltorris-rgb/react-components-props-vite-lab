@@ -1,25 +1,25 @@
 const blog = {
-  name: "My Personal Blog",
-  image: "https://via.placeholder.com/150",
-  about: "Welcome to my personal blog! I write about technology, coding, and my journey as a developer. Follow along for tutorials, tips, and insights.",
+  name: "Hyptech Networks Blog",
+  image: "/toris logo.jpeg", 
+  about: "Sharing insights on networking infrastructure, MikroTik, and software development in Narok.",
   posts: [
     {
       id: 1,
-      title: "Getting Started with React",
-      date: "May 10, 2024",
-      preview: "React is a powerful JavaScript library for building user interfaces. In this post, we'll explore the basics of components and props..."
+      title: "Integrating M-Pesa STK Push in React",
+      date: "May 10, 2026",
+      preview: "Exploring how to implement Safaricom's payment gateway for hotel booking applications.",
     },
     {
       id: 2,
-      title: "Understanding Props in React",
-      date: "May 12, 2024",
-      preview: "Props are the way we pass data between components in React. Learn how to make your components dynamic and reusable..."
+      title: "Networking with MikroTik RouterOS",
+      date: "May 12, 2026",
+      preview: "A deep dive into address acquisition and satellite system bypass modes.",
     },
     {
       id: 3,
-      title: "Building a Blog with Components",
-      date: "May 13, 2024",
-      preview: "Breaking down a UI into components makes development easier and more maintainable. Let's build a blog site together..."
+      title: "Reviving Legacy Hardware with Linux",
+      date: "May 13, 2026",
+      preview: "How I used antiX Linux to bring a Pentium 4 system back to life.",
     }
   ]
 };
