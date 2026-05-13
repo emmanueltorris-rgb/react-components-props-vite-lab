@@ -7,7 +7,7 @@ import ArticleList from './components/ArticleList';
 
 function App() {
   return (
-    <div className="app">
+    <div className="App">
       <Header name={blog.name} />
       
       <About image={blog.image} about={blog.about} />
